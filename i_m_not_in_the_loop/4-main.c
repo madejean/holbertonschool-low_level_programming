@@ -1,5 +1,5 @@
 #include "my_functions.h"
-
+/*function to print P if the number is positive, N if the number is negative, and Z if the number is zero*/
 int main(void)
 {
   positive_or_not(98);
