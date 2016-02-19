@@ -7,12 +7,11 @@ int print_char(char c)
 void print_last_digit(int n)
 {
   if (n<0) {
-    print_char('-');
+    n=n*(-1);
   }
-
-{
  n=n%10;
- n=n+48;
+ n= n+48; 
+
  print_char (n);
 }
-}
+
