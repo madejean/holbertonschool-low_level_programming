@@ -1,11 +1,12 @@
-int first_digit(int n){
+int first_digit(int n) {
   int first;
-  for (n = 0; n != 0; n++) {
+  first=0;
+  while (n != 0) {
     first = n;
     n = n / 10;
   }
-  if (n < 0) {
-    first = n * (-1);
-    }
+  if (first < 0) {
+    first = first * (-1);
+  }
   return first;
 }
