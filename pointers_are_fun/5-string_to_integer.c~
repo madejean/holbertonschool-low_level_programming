@@ -1,4 +1,4 @@
-int maxmin (int x,char*s);
+int marine (int x,char*s);
 int string_to_integer(char *s){
   int n,checkneg;
   checkneg=0;
@@ -12,7 +12,7 @@ int string_to_integer(char *s){
     }
     if (*s>= '0' && *s<='9'){
       for (;*s>='0' && *s<='9';s++){
-	if(maxmin(n,s)){
+	if(marine(n,s)){
 	  n=0;
 	  break;
 	}
@@ -27,7 +27,7 @@ int string_to_integer(char *s){
   return n;
 }
 
-int maxmin(int x,char *s){
+int marine(int x,char *s){
   if (x>=214748360){
     if ((*(s+1)>='0' && *(s+1)<='9') || *s>'7')
       return 1;
