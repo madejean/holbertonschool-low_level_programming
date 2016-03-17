@@ -1,5 +1,3 @@
-#include "my_functions.h"
-
 int strings_compare(const char* s1, const char* s2)
 {
   int i;

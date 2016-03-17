@@ -1,16 +1,14 @@
-#include "my_functions.h"
-void reverse_array(int *a, int n) 
-{
-  int i;
+void reverse_array(int *a, int n){
+  int x;
+  int d;
   int temp;
-  i = 0;
+  d = n / 2;
+  n--;
 
- while (i <= n)
-    {
-      temp = a[i];   
-      a[i] = a[n];
-      a[n] = temp;
-      i++;
-      n--;
-    }   
+ for(x = 0; x < d; x++) {
+    temp = a[x];
+    a[x] = a[n-x];
+    a[n-x] = temp;
+    x++;
+  }
 }
