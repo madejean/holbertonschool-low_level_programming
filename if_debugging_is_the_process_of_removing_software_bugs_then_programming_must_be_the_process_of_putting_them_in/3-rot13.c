@@ -1,30 +1,25 @@
-char *rot13(char *encode)
+char *rot13(char *str)
 {
   int i; 
-  for (i = 0; encode[i] != '\0'; i++)
+  /*loop goes through string to encode in rot 13*/
+  for (i = 0; *(str+i) != '\0'; i++)
     {
-      /*goes through A - M*/
-      if(encode[i] >= 65 && encode[i] <= 77){
-	encode[i] = encode[i] + 13; 
-      }
-      /* N - Z*/
-      else if(encode[i] > 77 && encode[i] <= 90)
+      if (*(str + i) >='A' && *(str+i) <= 'M')
 	{
-	  encode[i] = encode[i] - 13;
+	  *(str+i) = *(str+i) + 13;
 	}
-      /*a - m*/
-      else if(encode[i] >= 97 && encode[i] <= 109)
+      else if (*(str+ i) >= 'N' && *(str+i) <= 'Z')
+	  {
+	    *(str+i) = *(str+i) - 13;
+	  } 
+      else if (*(str+i) >= 'a' && *(str+i) <= 'm') 
 	{
-	  
-	  encode[i] = encode[i] + 13; 
-	}
-      /*n - z*/
-      else if(encode[i] > 109 && encode[i] <= 122)
+	  *(str+i) = *(str+i) + 13;
+        }
+      else if (*(str+i) >= 'n' && *(str+i) <= 'z')      
 	{
-	   
-	  encode[i] = encode[i] - 13;
+	*(str+i) = *(str+i) - 13;
 	}
-
     }
-  return encode; 
+   return (str);
 }

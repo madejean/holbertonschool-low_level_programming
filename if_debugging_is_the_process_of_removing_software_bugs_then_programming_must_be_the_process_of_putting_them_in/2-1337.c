@@ -1,34 +1,14 @@
-char *leet(char *array)
+char *leet(char *str)
 {
-  int i; 
-
-  for(i = 0; array[i]; i++)
-    {
-      switch(array[i])
-	{
-	case 'A':case 'a':
-	  array[i] = '4'; 
-	  break; 
-
-	case 'E':case 'e':
-	  array[i] = '3'; 
-	  break;
-
-	case 'O':case 'o':
-	  array[i] = '0'; 
-	  break;
-
-	case 'T':case 't':
-	  array[i] = '7'; 
-	  break;
-
-	case 'L':case 'l':
-	  array[i] = '1'; 
-	  break;
-	  
-	default:
-	  break; 
-	}
-    }
-  return array; 
-}
+    int i;
+    for (i=0; *(str+i)!='\0'; i++)
+      {
+	/*cases to encode string in 1337*/
+	if (*(str+i) == 'a' || *(str+i) == 'A') {*(str+i) = '4';}
+	if (*(str+i) == 'e' || *(str+i) == 'E') {*(str+i) = '3';}
+	if (*(str+i) == 'o' || *(str+i) == 'O') {*(str+i) ='0';}
+	if (*(str+i) == 't' || *(str+i) == 'T') {*(str+i) ='7';}
+	if (*(str+i) == 'l' || *(str+i) == 'L') {*(str+i) ='1';}
+      }
+    return(str);
+  }
