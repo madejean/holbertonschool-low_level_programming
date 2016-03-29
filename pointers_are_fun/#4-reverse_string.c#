@@ -1,0 +1,10 @@
+#include "my_functions.h"
+void reverse_string(char *s)
+{
+  for ( s[10]; s[0]; s--)
+    {
+      print_char(*s);
+    }
+
+       
+}
