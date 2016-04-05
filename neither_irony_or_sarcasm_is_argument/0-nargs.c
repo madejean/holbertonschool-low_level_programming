@@ -2,8 +2,7 @@
 
 int main(int ac, char **av)
 {
-  for (ac = 0; av[ac]; ac++);
-  printf("%d", ac -1);
-  printf("\n");
+  av = av;
+  printf("%d\n", ac -1);
   return 0;
 } 
