@@ -11,8 +11,11 @@ all: $(SOURCES) $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	ar -rcs $(EXECUTABLE) $(OBJECTS) -o $@
-src/%.o: src/%.c
+
+$(OBJECTS): $(SOURCES)
 	$(CC) $(CFLAGS) $< -o $@
+
 clean:
 	rm -f $(OBJECTS) $(EXECUTABLE)
-re: clean all
+
+re: clean $(OBJECTS)
