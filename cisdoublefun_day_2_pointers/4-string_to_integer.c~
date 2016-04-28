@@ -3,10 +3,10 @@ int string_to_integer(char *s)
 {
   int i; 
   int neg; 
-  int p;
+  int a;
   long n;
   i = 0;
-  p = 0;
+  a = 0;
   n = 0;
   neg = 1;
  
@@ -14,7 +14,7 @@ int string_to_integer(char *s)
     {
       if (s[i] < '0' || s[i] > '9')
 	{
-	  if (p == 1) /*previous numbers*/ 
+	  if (a == 1) /*previous numbers*/ 
 	    {
 	      break;
 	    }
@@ -25,7 +25,7 @@ int string_to_integer(char *s)
 	}
       if (s[i] >= '0' && s[i] <= '9') /*go through the all the digit of the number*/
 	{
-	  p = 1;
+	  a = 1;
 	  n = n * 10 + (s[i] - '0');
 	}
       i++;
