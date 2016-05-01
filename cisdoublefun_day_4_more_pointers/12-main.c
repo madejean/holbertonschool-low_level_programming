@@ -3,7 +3,7 @@ int string_upper(char *s);
 
 int main(void)
 {
-  char s[] = "y\n";
+  char s[] = "IPOIN";
   int p;
 
   p = string_upper(s);

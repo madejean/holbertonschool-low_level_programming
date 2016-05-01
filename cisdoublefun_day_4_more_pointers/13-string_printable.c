@@ -1,4 +1,4 @@
-int string_upper(char *s)
+int string_printable(char *s)
 {
   int i;
   int p;
@@ -11,7 +11,7 @@ int string_upper(char *s)
     }
   while (s[i] != '\0')
     {
-      if ((s[i] < 'A' ||  s[i] > 'Z') && s[i] != ' ')
+      if (s[i] < 31 ||  s[i] > 126) /*all printable characters in ascii table*/
 	{
 	  p = 0;
 	  break;

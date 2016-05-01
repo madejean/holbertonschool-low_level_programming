@@ -1,12 +1,12 @@
 #include <stdio.h>
-int string_lower(char *s);
+int string_printable(char *s);
 
 int main(void)
 {
-  char s[] = "sdy";
+  char s[] = "IPOIN";
   int p;
 
-  p = string_lower(s);
+  p = string_printable(s);
   printf("%d\n", p);
   return 0;
 }

@@ -3,7 +3,7 @@ int string_digit(char *s);
 
 int main(void)
 {
-  char s[] = "p\n";
+  char s[] = "100";
   int p;
 
   p = string_digit(s);
