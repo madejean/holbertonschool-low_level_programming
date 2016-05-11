@@ -4,49 +4,51 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 int print_char(char c);
-void fileMode(char *dest, struct stat *fileStat);
-void print_string(char *str);
 
 int main(int argc, char *argv[])
 {
   struct stat attributes;
-  char s[11];
 
   if (argc != 2)
     {
       return 1;
     }
-  if (stat(argv[1], &attributes) < 0) 
+  if (lstat(argv[1], &attributes) < 0) 
     {
       return 1;
     }
- 
-  fileMode(s, &attributes);
-  print_string(s);
+  if (S_ISDIR(attributes.st_mode))
+    print_char('d');
+  else print_char('-');
+  if (attributes.st_mode & S_IRUSR)
+    print_char('r');
+  else print_char('-');
+  if (attributes.st_mode & S_IWUSR)
+    print_char('w');
+  else print_char ('-');
+  if (attributes.st_mode & S_IXUSR)
+    print_char('x');
+  else print_char('-');
+  if (attributes.st_mode & S_IRGRP)
+    print_char('r');
+  else print_char('-');
+  if (attributes.st_mode & S_IWGRP)
+    print_char('w');
+  else print_char('-');
+  if (attributes.st_mode & S_IXGRP)
+    print_char('x');
+  else print_char('-');
+  if (attributes.st_mode & S_IROTH)
+    print_char('r');
+  else print_char('-');
+  if (attributes.st_mode & S_IWOTH)
+    print_char('w');
+  else print_char('-');
+  if (attributes.st_mode & S_IXOTH)
+    print_char('x');
+  else print_char('-');
+  
   print_char('\n');
-  return 0;
-}
-
-void fileMode(char *dest, struct stat *fileMode)
-{
-  dest[0]= (S_ISDIR(fileMode->st_mode)) ? 'd' : '-';
-  dest[1]= (fileMode->st_mode & S_IRUSR) ? 'r' : '-';
-  dest[2]= (fileMode->st_mode & S_IWUSR) ? 'w' : '-';
-  dest[3]= (fileMode->st_mode & S_IXUSR) ? 'x' : '-';
-  dest[4]= (fileMode->st_mode & S_IRGRP) ? 'r' : '-';
-  dest[5]= (fileMode->st_mode & S_IWGRP) ? 'w' : '-';
-  dest[6]= (fileMode->st_mode & S_IXGRP) ? 'x' : '-';
-  dest[7]= (fileMode->st_mode & S_IROTH) ? 'r' : '-';
-  dest[8]= (fileMode->st_mode & S_IWOTH) ? 'w' : '-';
-  dest[9]= (fileMode->st_mode & S_IXOTH) ? 'x' : '-';
-  dest[10]='\0';
-}
-
-void print_string(char *str)
-{
- while(*str)
-   {
-     print_char(*str);
-     str++;
-   }
+  
+  return (0); 
 }
