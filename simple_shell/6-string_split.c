@@ -1,98 +1,80 @@
-#include <stdio.h>
 #include <stdlib.h>
-#include "my_functions.h"
+char *create_space_for_word(char *str, char *dest, char separator);
+char *copy_word(char *str, char *dest, char separator);
+char *jump_separator(char *str, char separator);
+char **word_count_reserve_space(char *str, char separator);
 
-/*splits a string into word strings separated with a space*/
-char **string_split(const char *str, char space){
-  int i = 0;
-  char *copy = (char *)str;
-  char **split = store_number_of_strings(copy, space);
+/*splits a string into words with space as separator*/
+char **string_split(const char *str, char separator){
+  int i=0;
+  char *copy=(char *)str;
+  char **split=word_count_reserve_space(copy, separator);
+  /*while str is not equal to \0*/
   while(*copy){
-    if (*copy == space){
-      copy = go_through_spaces(copy, space); /*jumps over spaces and returns pointer to next character*/
+    if (*copy==separator){
+      copy=jump_separator(copy, separator); 
+      /*jumps over all consecutive spaces and returns pointer to non-space character*/
     }
     else{
-      split[i] = length_string_word(copy,split[i], space); /*returns address of newly allocated space for string_word*/
-      copy = string_word_copy(copy,split[i], space); /*copies string_word into the newly allocated space and returns a pointer to where it ends*/
-      i++; /*so that next split[i] is accessible*/
+      split[i]=create_space_for_word(copy,split[i], separator); 
+      /*returns address of newly allocated space for word*/
+      copy=copy_word(copy,split[i], separator); 
+      /*copies word into the newly allocated space and returns a pointer to the location where word ends*/
+      i++; 
+      /*so that next split[i] is accessible*/
     }
   }
   return split;
 }
 
-/*get the length of word and allocates space for it*/
-char *length_string_word(char *str, char *dest, char space){
-  int i;
-  i = 0;
-  while (*str && *str != space){ 
-    i++;
-    str++;
+/*counts the number of letters in a word and allocates space for it*/
+char *create_space_for_word(char *str, char *dest, char separator){
+  int count;
+  for(count=0;*str!=separator && *str;str++){ 
+    /*count number of letters in the word*/
+    count++;
   }
-  dest = malloc (sizeof(char)*(i+1));
+  dest=malloc( sizeof(char)*(count+1) );
   return dest;
 }
 
-/*copies word to *dest*/
-char *string_word_copy(char *src, char *dest, char space){
- while(*src && *src != space){
-      *dest = *src; 
-      dest++;
-      src++;
+/*copies word to *dest and null terminates it*/
+char *copy_word(char *str, char *dest, char separator){
+  for(;*str!=separator && *str;str++){ 
+    /*not equal to space or \0*/
+    *dest=*str;
+    dest++;
   }
-  *dest = '\0';
-  return src;
-}
-
-/*iterates through spaces*/
-char *go_through_spaces(char *str, char space){
-        /*keeps iterating until space is encountered*/
-  while (*str == space){
-          str++;
-  }
+  *dest='\0';
   return str;
 }
 
-/*get the number of strings and reserves space for them*/
-char **store_number_of_strings(char *str, char space){
+/*jumps over all consecutive spaces*/
+char *jump_separator(char *str, char separator){
+  /*keeps iterating until space is encountered*/
+  for(;*str==separator;str++);
+  return str;
+}
+
+/*counts total number of words in the string and reserves space for them*/
+char **word_count_reserve_space(char *str, char separator){
   char **dest;
-  int i = 0;
-  if (*str != space) i++; 
-  while (*str){
-     if (*str == space){
-             str = go_through_spaces(str, space);
-             if (*str != '\0') i++;
-     }
-     str++;
-  }
-      /*if a string is "     how    are     you" then there are 3 blocks of spaces
+  int count=0;
+  if (*str!=separator) count++; /*if first character is neither space or '/0' then add 1 to counter*/
+  for(;*str;str++){
+    if (*str==separator){
+      str=jump_separator(str, separator);
+      if (*str!='\0') count++; /*at every block of space encounted count++*/
+      /*
+       *if a string is "     how    are     you" then there are 3 blocks of spaces
        *if a string is "how    are     you" then there are 2 blocks of spaces but note on line 3 of this 
-       *function we have already accounted that if initially first character is non-space or non-terminating add 1 to counter
+       *function we have already accounted that if initially first character is non-space or 
+       *non-terminating add 1 to counter
        *so again the count is 3
        */
-  dest = malloc(sizeof(char *)*(i+1));
-  dest[i] = NULL; 
-  return dest; 
-}
-
-/*prints two dimentional array*/
-void print_tab(char **split){
-  int i;
-  i = 0;
-  while (split[i]){
-     print_line(split[i]);
-     print_char('\n');
-     i++;
+    }
   }
-}
-
-/*free space*/
-void free_tab(char **split){
-  int i;
-  i = 0;
-  while(split[i]){
-      free(split[i]);
-      i++;
-  }
-  free(split[i]);
-  free(split);
+  dest=malloc( sizeof(char *)*(count+1) );
+  dest[count]=NULL; /*set the last one to NULL*/
+  return dest;
 }
