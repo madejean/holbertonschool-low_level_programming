@@ -1,12 +1,14 @@
-#include <stdio.h>
 int print_char(char c);
 int string_to_int(char *s);
 
-int main (__attribute__ ((unused)) int argc, char *argv[])
+int main (int argc, char *argv[])
 {
         int x;
         int y;
         int n;
+        if (argc == 1){
+                return 1;
+        }
         n = string_to_int(argv[1]);
         for (x = 0; x < n; x++) {
                 for (y = 0; y < n; y++) {
