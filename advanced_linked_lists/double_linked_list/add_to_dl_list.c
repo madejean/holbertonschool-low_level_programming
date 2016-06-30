@@ -16,22 +16,24 @@ int add_end_dl_list(List **list, char *str)
                 return 1;
         }
         node->str = strdup(str);
+        if (node->str == NULL){
+                return 1;
+        }
         node->next = NULL;
-
         if (*list == NULL) {
-                node->prev = NULL;
                 *list = node;
+                node->prev = NULL;
         }
         else {
                 link = *list;
                 while (link->next != NULL) {
                         link = link->next;
                 }
-                node->prev = link;
                 link->next = node;
+                node->prev = link;
         }
         return 0;
-}
+        }
 
 int add_begin_dl_list(List **list, char *str){
         List *node;
@@ -45,6 +47,9 @@ int add_begin_dl_list(List **list, char *str){
         }
 
         node->str = strdup(str);
+        if (node->str == NULL){
+                return 1;
+        }
         node->prev = NULL;
 
         if (*list == NULL){
@@ -52,8 +57,8 @@ int add_begin_dl_list(List **list, char *str){
                 *list = node;
         }
         else{
-                node->next = *list;
                 (*list)->prev = node;
+                node->next = *list;
                 *list = node;
         }
         return 0;
