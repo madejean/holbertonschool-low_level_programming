@@ -2,14 +2,14 @@
 #include "list.h"
 
 /*free nodes*/
-void free_dl_list(List *list)
+void free_dcl_list(List *list)
 {
         List *node;
         node = list;
 
-        while (node != NULL) {
+        while (node->next != list) {
                 free(node->str);
                 free(node);
                 node = node->next;
-        }
+        } 
 }
