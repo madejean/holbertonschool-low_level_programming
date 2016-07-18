@@ -1,29 +1,28 @@
-void quick_sort(int *array, int size){
-        int temp;
+void quick_sort(int *array, int size) {
+        int i;
         int start;
         int end;
-        temp = 0;
-        start = -1;
-        end = size;
+        int temp;
+        start = 0;
+        end = size - 1;
+        i = array[start];
 
-        if(size <= 1){
+        if (size < 2) {
                 return;
         }
-        while(start < end){
-                while(array[start] < array[size/2]){    
+
+        while (array[start] != array[end]) {
+                while (array[start] < i) {
+                        start++;
+                }
+                while (array[end] > i) {
                         end--;
                 }
-                while(array[end] > array[size/2]){
-                        if(start < end){
-                                temp = array[start];
-                                array[start] = array[end];
-                                array[end] = temp;
-                        }
-                }
-                start++;
+                temp = array[start];
+                array[start] = array[end];
+                array[end] = temp;
         }
-                        
+                
         quick_sort(array, start);
-        quick_sort(&(array[start]), size - start);
+        quick_sort((array + (start + 1)), size - (start + 1));
 }
-
