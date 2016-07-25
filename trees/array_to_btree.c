@@ -1,6 +1,7 @@
 #include "header.h"
+#include "tree.h"
 
-Btree *array_to_btree(char **array)
+BTree *array_to_btree(char **array)
 {
         BTree *tree;
         int i;
@@ -11,5 +12,5 @@ Btree *array_to_btree(char **array)
                         btree_insert(&tree, array[i]);
                         i++;
                 }
-        return (tree);
+        return tree;
 }

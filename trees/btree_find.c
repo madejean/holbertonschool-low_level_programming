@@ -4,7 +4,7 @@ BTree *btree_find(BTree *tree, char *str)
 {
         BTree *root;
         int t;
-        root = *tree;
+        root = tree;
         t = strcmp(root->str, str);
         
         while(root != NULL)
