@@ -1,4 +1,11 @@
 #include "header.h"
+#include "tree.h"
+/**
+ * btree_insert - Inserts node in a binary tree
+ * @*tree: pointer to structure
+ * @*data: points to array of elements
+ */
+
 int traverse_tree(BTree *root, BTree *node);
 
 int btree_insert(BTree **tree, char *data)
@@ -7,7 +14,7 @@ int btree_insert(BTree **tree, char *data)
         BTree *root;
         root = *tree;
         
-        node = malloc(sizeof(BTree));
+        node = malloc(sizeof(BTree)); /*allocate memory for a new node*/
         if (node == NULL)
                 {
                         return 1;
@@ -18,7 +25,7 @@ int btree_insert(BTree **tree, char *data)
                 }
         else 
                 {
-                        node->str = strdup(data);
+                        node->str = strdup(data); /*copy of str in the new node*/
                         node->left = NULL;
                         node->right = NULL;
                         traverse_tree(root, node);

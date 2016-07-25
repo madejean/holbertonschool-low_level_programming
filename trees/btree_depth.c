@@ -1,4 +1,9 @@
 #include "header.h"
+#include "tree.h"
+/**
+ * btree_depth - calculated the depth of a binary tree
+ * @*tree: points to tree structure
+ */
 int btree_depth(BTree *tree)
 {
         int left;
