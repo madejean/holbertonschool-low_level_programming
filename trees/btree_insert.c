@@ -2,8 +2,8 @@
 #include "tree.h"
 /**
  * btree_insert - Inserts node in a binary tree
- * @*tree: pointer to structure
- * @*data: points to array of elements
+ * @tree: pointer to structure
+ * @data: points to array of elements
  */
 int btree_insert(BTree **tree, char *data)
 {

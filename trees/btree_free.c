@@ -1,7 +1,7 @@
 #include "header.h"
 /**
  * btree_free - Frees allocated memory of a binary tree
- * @*tree: points to binary tree structure
+ * @tree: points to binary tree structure
  */
 
 void btree_free(BTree *tree)

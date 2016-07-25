@@ -2,8 +2,7 @@
 #include "tree.h"
 /**
  * Array_to_btree - converts an array of stings into a binary tree
- * @*tree: points to binary tree structure
- * @**array: array passed as parameter
+ * @array: array passed as parameter
  */
 
 BTree *array_to_btree(char **array)
