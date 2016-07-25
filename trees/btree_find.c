@@ -3,7 +3,8 @@
 BTree *btree_find(BTree *tree, char *str)
 {
         BTree *root;
-        root = tree;
+        int t;
+        root = *tree;
         t = strcmp(root->str, str);
         
         while(root != NULL)

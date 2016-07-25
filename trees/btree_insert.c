@@ -1,5 +1,4 @@
 #include "header.h"
-
 int traverse_tree(BTree *root, BTree *node);
 
 int btree_insert(BTree **tree, char *data)
@@ -23,10 +22,6 @@ int btree_insert(BTree **tree, char *data)
                         node->left = NULL;
                         node->right = NULL;
                         traverse_tree(root, node);
-                        if (t == 1)
-                                {
-                                        return 1;
-                                }
                 }
         return 0;
 }
